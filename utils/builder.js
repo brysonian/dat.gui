@@ -90,7 +90,6 @@ function build(_params) {
         ensured[curn] = true;
       }
     }
-
   }
 
   var shared_count = 0;
@@ -106,9 +105,12 @@ function build(_params) {
       }
     }
   }
-  
+
 
   to_write += params.shortcut + ' = ' + params.main.replace(/\//g, '.') + ' = ' + defined[params.main].getClosure() + ';';
+
+  // browserify support
+  to_write += "\n\n// browserify support\nif ( typeof module === 'object' ) module.exports = dat;\n";
 
   if (params.verbose) console.log('Exported: ' + params.main + ' to window.' + params.shortcut);
 
