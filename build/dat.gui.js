@@ -1084,10 +1084,10 @@ dat.controllers.FunctionController = (function (Controller, dom, common) {
           if (this.__onChange) {
             this.__onChange.call(this);
           }
+          this.getValue().call(this.object);
           if (this.__onFinishChange) {
             this.__onFinishChange.call(this, this.getValue());
           }
-          this.getValue().call(this.object);
         }
       }
 
@@ -3670,3 +3670,6 @@ dat.dom.CenteredDiv = (function (dom, common) {
 dat.utils.common),
 dat.dom.dom,
 dat.utils.common);
+
+// browserify support
+if ( typeof module === 'object' ) module.exports = dat;
